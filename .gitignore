@@ -18,3 +18,5 @@
 .dub
 docs.json
 __dummy.html
+DerelictLibui
+dub.selections.json

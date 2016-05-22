@@ -1,0 +1,16 @@
+{
+    "name": "derelict-libui",
+    "description": "A dynamic binding to the libui library.",
+    "homepage": "https://github.com/Extrawurst/DerelictLibui",
+    "license": "MIT",
+    "authors": [
+        "Stephan Dilly"
+    ],
+
+    "targetName": "DerelictLibui",
+    "targetPath": "lib",
+
+    "dependencies": {
+        "derelict-util": ">=2.0.6"
+    }
+}
