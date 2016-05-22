@@ -33,6 +33,11 @@ module derelict.libui.types;
 
 align(1):
 
+alias uintptr_t = uint*;
+alias uint32_t = uint;
+alias uintmax_t = uint;
+alias intmax_t = int;
+
 struct uiInitOptions {
     size_t Size;
 }
@@ -40,3 +45,157 @@ struct uiInitOptions {
 struct uiWindow {}
 struct uiControl {}
 struct uiColorButton {}
+struct uiMenu {}
+struct uiMenuItem {}
+struct uiButton {}
+struct uiBox {}
+struct uiEntry {}
+struct uiCheckbox {}
+struct uiLabel {}
+struct uiTab {}
+struct uiGroup {}
+struct uiSpinbox {}
+struct uiProgressBar {}
+struct uiSlider {}
+struct uiSeparator {}
+struct uiCombobox {}
+struct uiRadioButtons {}
+struct uiDateTimePicker {}
+struct uiMultilineEntry {}
+
+struct uiArea {}
+struct uiAreaHandler {}
+struct uiAreaDrawParams {}
+struct uiAreaMouseEvent {}
+struct uiAreaKeyEvent {}
+
+struct uiDrawContext {}
+struct uiDrawPath {}
+struct uiDrawBrush {}
+struct uiDrawStrokeParams {}
+struct uiDrawMatrix {}
+struct uiDrawBrushGradientStop {}
+struct uiDrawFontFamilies {}
+struct uiDrawTextLayout {}
+struct uiDrawTextFont {}
+struct uiDrawTextFontDescriptor {}
+struct uiDrawTextFontMetrics {}
+struct uiFontButton {}
+
+alias uiDrawBrushType = int;
+alias uiDrawLineCap = int;
+alias uiDrawLineJoin = int;
+alias uiDrawFillMode = int;
+alias uiDrawTextWeight = int;
+alias uiDrawTextItalic = int;
+alias uiDrawTextStretch = int;
+alias uiModifiers = int;
+alias uiExtKey = int;
+
+/+_UI_ENUM(uiDrawBrushType) {
+    uiDrawBrushTypeSolid,
+    uiDrawBrushTypeLinearGradient,
+    uiDrawBrushTypeRadialGradient,
+    uiDrawBrushTypeImage,
+};
+
+_UI_ENUM(uiDrawLineCap) {
+    uiDrawLineCapFlat,
+    uiDrawLineCapRound,
+    uiDrawLineCapSquare,
+};
+
+_UI_ENUM(uiDrawLineJoin) {
+    uiDrawLineJoinMiter,
+    uiDrawLineJoinRound,
+    uiDrawLineJoinBevel,
+};
+
+_UI_ENUM(uiDrawFillMode) {
+    uiDrawFillModeWinding,
+    uiDrawFillModeAlternate,
+};
+
+_UI_ENUM(uiDrawTextWeight) {
+    uiDrawTextWeightThin,
+    uiDrawTextWeightUltraLight,
+    uiDrawTextWeightLight,
+    uiDrawTextWeightBook,
+    uiDrawTextWeightNormal,
+    uiDrawTextWeightMedium,
+    uiDrawTextWeightSemiBold,
+    uiDrawTextWeightBold,
+    uiDrawTextWeightUtraBold,
+    uiDrawTextWeightHeavy,
+    uiDrawTextWeightUltraHeavy,
+};
+
+_UI_ENUM(uiDrawTextItalic) {
+    uiDrawTextItalicNormal,
+    uiDrawTextItalicOblique,
+    uiDrawTextItalicItalic,
+};
+
+_UI_ENUM(uiDrawTextStretch) {
+    uiDrawTextStretchUltraCondensed,
+    uiDrawTextStretchExtraCondensed,
+    uiDrawTextStretchCondensed,
+    uiDrawTextStretchSemiCondensed,
+    uiDrawTextStretchNormal,
+    uiDrawTextStretchSemiExpanded,
+    uiDrawTextStretchExpanded,
+    uiDrawTextStretchExtraExpanded,
+    uiDrawTextStretchUltraExpanded,
+};
+
+_UI_ENUM(uiModifiers) {
+    uiModifierCtrl = 1 << 0,
+    uiModifierAlt = 1 << 1,
+    uiModifierShift = 1 << 2,
+    uiModifierSuper = 1 << 3,
+};
+
+_UI_ENUM(uiExtKey) {
+    uiExtKeyEscape = 1,
+    uiExtKeyInsert,         // equivalent to "Help" on Apple keyboards
+    uiExtKeyDelete,
+    uiExtKeyHome,
+    uiExtKeyEnd,
+    uiExtKeyPageUp,
+    uiExtKeyPageDown,
+    uiExtKeyUp,
+    uiExtKeyDown,
+    uiExtKeyLeft,
+    uiExtKeyRight,
+    uiExtKeyF1,         // F1..F12 are guaranteed to be consecutive
+    uiExtKeyF2,
+    uiExtKeyF3,
+    uiExtKeyF4,
+    uiExtKeyF5,
+    uiExtKeyF6,
+    uiExtKeyF7,
+    uiExtKeyF8,
+    uiExtKeyF9,
+    uiExtKeyF10,
+    uiExtKeyF11,
+    uiExtKeyF12,
+    uiExtKeyN0,         // numpad keys; independent of Num Lock state
+    uiExtKeyN1,         // N0..N9 are guaranteed to be consecutive
+    uiExtKeyN2,
+    uiExtKeyN3,
+    uiExtKeyN4,
+    uiExtKeyN5,
+    uiExtKeyN6,
+    uiExtKeyN7,
+    uiExtKeyN8,
+    uiExtKeyN9,
+    uiExtKeyNDot,
+    uiExtKeyNEnter,
+    uiExtKeyNAdd,
+    uiExtKeyNSubtract,
+    uiExtKeyNMultiply,
+    uiExtKeyNDivide,
+};
++/
+
+static immutable uiDrawDefaultMiterLimit = 10.0;
