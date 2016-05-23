@@ -205,7 +205,8 @@ void main()
 
     uiControlShow(cast(uiControl*)(mainwin));
     uiMain();
-    uiUninit();
+    //note: on osx this leads to a crash in the end of the app
+    //uiUninit();
 	
     DerelictLibui.unload();
 }
