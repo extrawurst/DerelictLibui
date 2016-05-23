@@ -33,6 +33,8 @@ module derelict.libui.types;
 
 align(1):
 
+alias cstring = const(char)*;
+
 alias uintptr_t = uint*;
 alias uint32_t = uint;
 alias uintmax_t = uint;

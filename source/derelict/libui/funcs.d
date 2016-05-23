@@ -37,9 +37,7 @@ private
     import derelict.libui.types;
 }
 
-alias cstring = const(char)*;
-
-extern(C) @nogc nothrow
+extern(C) nothrow
 {
     alias da_uiInit = cstring function(uiInitOptions *options);
     alias da_uiUninit = void function();
@@ -48,14 +46,10 @@ extern(C) @nogc nothrow
 
     alias da_uiMain = void function();
     alias da_uiQuit = void function();
-/+
-// TODO write a test for this after adding multiline entries
-_UI_EXTERN void uiQueueMain(void (*f)(void *data), void *data);
 
-_UI_EXTERN void uiOnShouldQuit(int (*f)(void *data), void *data);
-
-_UI_EXTERN void uiFreeText(char *text);
-+/
+    alias da_uiQueueMain = void function(void function(void *data) f, void *data);
+    alias da_uiOnShouldQuit = void function(int function(void *data) f, void *data);
+    alias da_uiFreeText = void function(cstring text);
 
     alias da_uiControlDestroy = void function(uiControl *);
     alias da_uiControlHandle = uintptr_t function(uiControl *);
@@ -76,7 +70,7 @@ _UI_EXTERN void uiFreeText(char *text);
     alias da_uiControlVerifySetParent = void function(uiControl *, uiControl *);
     alias da_uiControlEnabledToUser = int function(uiControl *);
 
-    alias onWindowClosingFunction = int function(uiWindow* w, void* data) nothrow;
+    alias onWindowClosingFunction = int function(uiWindow* w, void* data);
 
     alias da_uiWindowTitle = cstring function(uiWindow *w);
     alias da_uiWindowSetTitle = void function(uiWindow *w, cstring title);
@@ -263,6 +257,10 @@ __gshared
     da_uiFreeInitError uiFreeInitError;
     da_uiMain uiMain;
     da_uiQuit uiQuit;
+
+    da_uiQueueMain uiQueueMain;
+    da_uiOnShouldQuit uiOnShouldQuit;
+    da_uiFreeText uiFreeText;
 
     da_uiControlDestroy uiControlDestroy;
     da_uiControlHandle uiControlHandle;

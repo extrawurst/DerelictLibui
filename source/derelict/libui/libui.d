@@ -66,6 +66,10 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiMain, "uiMain");
             bindFunc(cast(void**)&uiQuit, "uiQuit");
 
+            bindFunc(cast(void**)&uiQueueMain, "uiQueueMain");
+            bindFunc(cast(void**)&uiOnShouldQuit, "uiOnShouldQuit");
+            bindFunc(cast(void**)&uiFreeText, "uiFreeText");
+
             bindFunc(cast(void**)&uiControlDestroy, "uiControlDestroy");
             bindFunc(cast(void**)&uiControlHandle, "uiControlHandle");
             bindFunc(cast(void**)&uiControlParent, "uiControlParent");

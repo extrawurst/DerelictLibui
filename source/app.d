@@ -3,12 +3,63 @@
 import derelict.libui.libui;
 
 uiWindow* mainwin;
+uiSpinbox* spinbox;
+uiSlider* slider;
+uiProgressBar* progressbar;
 
-extern(C) int onClosing(uiWindow* w, void* data) nothrow @nogc
+extern(C) nothrow {
+
+    int shouldQuit(void *data)
+    {
+        uiControlDestroy(cast(uiControl*)(mainwin));
+        return 1;
+    }
+
+    void openClicked(uiMenuItem *item, uiWindow *w, void *data)
+    {
+        auto filename = uiOpenFile(mainwin);
+        if (filename is null) {
+            uiMsgBoxError(mainwin, "No file selected", "Don't be alarmed!");
+            return;
+        }
+        uiMsgBox(mainwin, "File selected", filename);
+        uiFreeText(filename);
+    }
+
+    void saveClicked(uiMenuItem *item, uiWindow *w, void *data)
+    {
+        auto filename = uiSaveFile(mainwin);
+        if (filename is null) {
+            uiMsgBoxError(mainwin, "No file selected", "Don't be alarmed!");
+            return;
+        }
+        uiMsgBox(mainwin, "File selected (don't worry, it's still there)", filename);
+        uiFreeText(filename);
+    }
+
+    int onClosing(uiWindow* w, void* data)
+    {
+        uiControlDestroy(cast(uiControl*)mainwin);
+        uiQuit();
+        return 0;
+    }
+
+    void onSpinboxChanged(uiSpinbox *s, void *data)
+    {
+        update(uiSpinboxValue(spinbox));
+    }
+
+    void onSliderChanged(uiSlider *s, void *data)
+    {
+        update(uiSliderValue(slider));
+    }
+}
+
+void update(intmax_t value) nothrow
 {
-    uiControlDestroy(cast(uiControl*)mainwin);
-    uiQuit();
-    return 0;
+    uiSpinboxSetValue(spinbox, value);
+    uiSliderSetValue(slider, value);
+    uiProgressBarSetValue(progressbar, value);
 }
  
 void main()
@@ -23,11 +74,11 @@ void main()
 
     auto menu = uiNewMenu("File");
     auto item = uiMenuAppendItem(menu, "Open");
-    //uiMenuItemOnClicked(item, openClicked, null);
+    uiMenuItemOnClicked(item, &openClicked, null);
     item = uiMenuAppendItem(menu, "Save");
-    //uiMenuItemOnClicked(item, saveClicked, null);
+    uiMenuItemOnClicked(item, &saveClicked, null);
     item = uiMenuAppendQuitItem(menu);
-    //uiOnShouldQuit(shouldQuit, null);
+    uiOnShouldQuit(&shouldQuit, null);
 
     menu = uiNewMenu("Edit");
     item = uiMenuAppendCheckItem(menu, "Checkable Item");
@@ -109,15 +160,15 @@ void main()
     uiBoxSetPadded(inner, 1);
     uiGroupSetChild(group, cast(uiControl*)(inner));
 
-    auto spinbox = uiNewSpinbox(0, 100);
-    //uiSpinboxOnChanged(spinbox, onSpinboxChanged, null);
+    spinbox = uiNewSpinbox(0, 100);
+    uiSpinboxOnChanged(spinbox, &onSpinboxChanged, null);
     uiBoxAppend(inner, cast(uiControl*)(spinbox), 0);
 
-    auto slider = uiNewSlider(0, 100);
-    //uiSliderOnChanged(slider, onSliderChanged, null);
+    slider = uiNewSlider(0, 100);
+    uiSliderOnChanged(slider, &onSliderChanged, null);
     uiBoxAppend(inner, cast(uiControl*)(slider), 0);
 
-    auto progressbar = uiNewProgressBar();
+    progressbar = uiNewProgressBar();
     uiBoxAppend(inner, cast(uiControl*)(progressbar), 0);
 
     group = uiNewGroup("Lists");
