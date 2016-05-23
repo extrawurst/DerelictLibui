@@ -37,8 +37,17 @@ alias cstring = const(char)*;
 
 alias uintptr_t = uint*;
 alias uint32_t = uint;
-alias uintmax_t = uint;
-alias intmax_t = int;
+
+version(X68)
+{
+    alias uintmax_t = uint;
+    alias intmax_t = int;
+}
+else
+{
+    alias uintmax_t = ulong;
+    alias intmax_t = long;
+}
 
 struct uiInitOptions {
     size_t Size;

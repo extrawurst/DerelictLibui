@@ -59,7 +59,7 @@ void update(intmax_t value) nothrow
 {
     uiSpinboxSetValue(spinbox, value);
     uiSliderSetValue(slider, value);
-    uiProgressBarSetValue(progressbar, value);
+    uiProgressBarSetValue(progressbar, cast(int)value);
 }
  
 void main()

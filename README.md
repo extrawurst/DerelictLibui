@@ -1,4 +1,5 @@
 # DerelictLibui
 Dynamic Binding for libui (https://github.com/andlabs/libui) in D
 
-![screenshot](https://raw.github.com/extrawurst/DerelictLibui/master/screenshot.png)
+![screenshot osx](https://raw.github.com/extrawurst/DerelictLibui/master/screenshot_osx.png)
+![screenshot win](https://raw.github.com/extrawurst/DerelictLibui/master/screenshot_win.png)
