@@ -9,6 +9,7 @@
 
     "targetName": "DerelictLibui",
     "targetPath": "lib",
+    "targetType": "library",
 
     "dependencies": {
         "derelict-util": ">=2.0.6"
