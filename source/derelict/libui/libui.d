@@ -47,7 +47,7 @@ private
     else static if (Derelict_OS_Mac)
         enum libNames = "libui.dylib, libui.A.dylib";
     else static if (Derelict_OS_Linux)
-        enum libNames = "libui.so, libui.A.so";
+        enum libNames = "libui.so.0, libui.so";
     else
         static assert(0, "Need to implement libui libNames for this operating system.");
 }
