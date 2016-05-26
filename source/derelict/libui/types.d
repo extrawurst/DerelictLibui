@@ -86,40 +86,35 @@ struct uiDrawTextFontMetrics {}
 struct uiFontButton {}
 
 alias uiDrawBrushType = int;
-alias uiDrawLineCap = int;
-alias uiDrawLineJoin = int;
-alias uiDrawFillMode = int;
-alias uiDrawTextWeight = int;
-alias uiDrawTextItalic = int;
-alias uiDrawTextStretch = int;
-alias uiModifiers = int;
-alias uiExtKey = int;
-
-/+_UI_ENUM(uiDrawBrushType) {
+enum {
     uiDrawBrushTypeSolid,
     uiDrawBrushTypeLinearGradient,
     uiDrawBrushTypeRadialGradient,
     uiDrawBrushTypeImage,
-};
+}
 
-_UI_ENUM(uiDrawLineCap) {
+alias uiDrawLineCap = int;
+enum {
     uiDrawLineCapFlat,
     uiDrawLineCapRound,
     uiDrawLineCapSquare,
-};
+}
 
-_UI_ENUM(uiDrawLineJoin) {
+alias uiDrawLineJoin = int;
+enum {
     uiDrawLineJoinMiter,
     uiDrawLineJoinRound,
     uiDrawLineJoinBevel,
-};
+}
 
-_UI_ENUM(uiDrawFillMode) {
+alias uiDrawFillMode = int;
+enum {
     uiDrawFillModeWinding,
     uiDrawFillModeAlternate,
-};
+}
 
-_UI_ENUM(uiDrawTextWeight) {
+alias uiDrawTextWeight = int;
+enum {
     uiDrawTextWeightThin,
     uiDrawTextWeightUltraLight,
     uiDrawTextWeightLight,
@@ -131,15 +126,17 @@ _UI_ENUM(uiDrawTextWeight) {
     uiDrawTextWeightUtraBold,
     uiDrawTextWeightHeavy,
     uiDrawTextWeightUltraHeavy,
-};
+}
 
-_UI_ENUM(uiDrawTextItalic) {
+alias uiDrawTextItalic = int;
+enum {
     uiDrawTextItalicNormal,
     uiDrawTextItalicOblique,
     uiDrawTextItalicItalic,
-};
+}
 
-_UI_ENUM(uiDrawTextStretch) {
+alias uiDrawTextStretch = int;
+enum {
     uiDrawTextStretchUltraCondensed,
     uiDrawTextStretchExtraCondensed,
     uiDrawTextStretchCondensed,
@@ -149,16 +146,18 @@ _UI_ENUM(uiDrawTextStretch) {
     uiDrawTextStretchExpanded,
     uiDrawTextStretchExtraExpanded,
     uiDrawTextStretchUltraExpanded,
-};
+}
 
-_UI_ENUM(uiModifiers) {
+alias uiModifiers = int;
+enum {
     uiModifierCtrl = 1 << 0,
     uiModifierAlt = 1 << 1,
     uiModifierShift = 1 << 2,
     uiModifierSuper = 1 << 3,
-};
+}
 
-_UI_ENUM(uiExtKey) {
+alias uiExtKey = int;
+enum {
     uiExtKeyEscape = 1,
     uiExtKeyInsert,         // equivalent to "Help" on Apple keyboards
     uiExtKeyDelete,
@@ -198,7 +197,6 @@ _UI_ENUM(uiExtKey) {
     uiExtKeyNSubtract,
     uiExtKeyNMultiply,
     uiExtKeyNDivide,
-};
-+/
+}
 
 static immutable uiDrawDefaultMiterLimit = 10.0;
