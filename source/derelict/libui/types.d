@@ -57,11 +57,13 @@ struct uiCheckbox {}
 struct uiLabel {}
 struct uiTab {}
 struct uiGroup {}
+struct uiForm {}
 struct uiSpinbox {}
 struct uiProgressBar {}
 struct uiSlider {}
 struct uiSeparator {}
 struct uiCombobox {}
+struct uiEditableCombobox {}
 struct uiRadioButtons {}
 struct uiDateTimePicker {}
 struct uiMultilineEntry {}

@@ -43,7 +43,7 @@ private
     import derelict.util.system;
 
     static if(Derelict_OS_Windows)
-        enum libNames = "libui.dll";    
+        enum libNames = "libui.dll";
     else static if (Derelict_OS_Mac)
         enum libNames = "libui.dylib, libui.A.dylib";
     else static if (Derelict_OS_Linux)
@@ -58,12 +58,13 @@ class DerelictLibuiLoader : SharedLibLoader
     protected
     {
         override void loadSymbols()
-        {          
+        {
             bindFunc(cast(void**)&uiInit, "uiInit");
             bindFunc(cast(void**)&uiUninit, "uiUninit");
 
             bindFunc(cast(void**)&uiFreeInitError, "uiFreeInitError");
             bindFunc(cast(void**)&uiMain, "uiMain");
+            bindFunc(cast(void**)&uiMainStep, "uiMainStep");
             bindFunc(cast(void**)&uiQuit, "uiQuit");
 
             bindFunc(cast(void**)&uiQueueMain, "uiQueueMain");
@@ -85,7 +86,6 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiAllocControl, "uiAllocControl");
             bindFunc(cast(void**)&uiFreeControl, "uiFreeControl");
 
-            bindFunc(cast(void**)&uiControlVerifyDestroy, "uiControlVerifyDestroy");
             bindFunc(cast(void**)&uiControlVerifySetParent, "uiControlVerifySetParent");
             bindFunc(cast(void**)&uiControlEnabledToUser, "uiControlEnabledToUser");
 
@@ -101,32 +101,34 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiButtonSetText, "uiButtonSetText");
             bindFunc(cast(void**)&uiButtonOnClicked, "uiButtonOnClicked");
             bindFunc(cast(void**)&uiNewButton, "uiNewButton");
-            
+
             bindFunc(cast(void**)&uiBoxAppend, "uiBoxAppend");
             bindFunc(cast(void**)&uiBoxDelete, "uiBoxDelete");
             bindFunc(cast(void**)&uiBoxPadded, "uiBoxPadded");
             bindFunc(cast(void**)&uiBoxSetPadded, "uiBoxSetPadded");
             bindFunc(cast(void**)&uiNewHorizontalBox, "uiNewHorizontalBox");
             bindFunc(cast(void**)&uiNewVerticalBox, "uiNewVerticalBox");
-            
+
             bindFunc(cast(void**)&uiEntryText, "uiEntryText");
             bindFunc(cast(void**)&uiEntrySetText, "uiEntrySetText");
             bindFunc(cast(void**)&uiEntryOnChanged, "uiEntryOnChanged");
             bindFunc(cast(void**)&uiEntryReadOnly, "uiEntryReadOnly");
             bindFunc(cast(void**)&uiEntrySetReadOnly, "uiEntrySetReadOnly");
             bindFunc(cast(void**)&uiNewEntry, "uiNewEntry");
-            
+            bindFunc(cast(void**)&uiNewPasswordEntry, "uiNewPasswordEntry");
+            bindFunc(cast(void**)&uiNewSearchEntry, "uiNewSearchEntry");
+
             bindFunc(cast(void**)&uiCheckboxText, "uiCheckboxText");
             bindFunc(cast(void**)&uiCheckboxSetText, "uiCheckboxSetText");
             bindFunc(cast(void**)&uiCheckboxOnToggled, "uiCheckboxOnToggled");
             bindFunc(cast(void**)&uiCheckboxChecked, "uiCheckboxChecked");
             bindFunc(cast(void**)&uiCheckboxSetChecked, "uiCheckboxSetChecked");
             bindFunc(cast(void**)&uiNewCheckbox, "uiNewCheckbox");
-            
+
             bindFunc(cast(void**)&uiLabelText, "uiLabelText");
             bindFunc(cast(void**)&uiLabelSetText, "uiLabelSetText");
             bindFunc(cast(void**)&uiNewLabel, "uiNewLabel");
-            
+
             bindFunc(cast(void**)&uiTabAppend, "uiTabAppend");
             bindFunc(cast(void**)&uiTabInsertAt, "uiTabInsertAt");
             bindFunc(cast(void**)&uiTabDelete, "uiTabDelete");
@@ -134,43 +136,48 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiTabMargined, "uiTabMargined");
             bindFunc(cast(void**)&uiTabSetMargined, "uiTabSetMargined");
             bindFunc(cast(void**)&uiNewTab, "uiNewTab");
-            
+
             bindFunc(cast(void**)&uiGroupTitle, "uiGroupTitle");
             bindFunc(cast(void**)&uiGroupSetTitle, "uiGroupSetTitle");
             bindFunc(cast(void**)&uiGroupSetChild, "uiGroupSetChild");
             bindFunc(cast(void**)&uiGroupMargined, "uiGroupMargined");
             bindFunc(cast(void**)&uiGroupSetMargined, "uiGroupSetMargined");
             bindFunc(cast(void**)&uiNewGroup, "uiNewGroup");
-            
+
             bindFunc(cast(void**)&uiSpinboxValue, "uiSpinboxValue");
             bindFunc(cast(void**)&uiSpinboxSetValue, "uiSpinboxSetValue");
             bindFunc(cast(void**)&uiSpinboxOnChanged, "uiSpinboxOnChanged");
             bindFunc(cast(void**)&uiNewSpinbox, "uiNewSpinbox");
-            
+
             bindFunc(cast(void**)&uiProgressBarSetValue, "uiProgressBarSetValue");
             bindFunc(cast(void**)&uiNewProgressBar, "uiNewProgressBar");
-            
+
             bindFunc(cast(void**)&uiSliderValue, "uiSliderValue");
             bindFunc(cast(void**)&uiSliderSetValue, "uiSliderSetValue");
             bindFunc(cast(void**)&uiSliderOnChanged, "uiSliderOnChanged");
             bindFunc(cast(void**)&uiNewSlider, "uiNewSlider");
-            
+
             bindFunc(cast(void**)&uiNewHorizontalSeparator, "uiNewHorizontalSeparator");
-            
+
             bindFunc(cast(void**)&uiComboboxAppend, "uiComboboxAppend");
             bindFunc(cast(void**)&uiComboboxSelected, "uiComboboxSelected");
             bindFunc(cast(void**)&uiComboboxSetSelected, "uiComboboxSetSelected");
             bindFunc(cast(void**)&uiComboboxOnSelected, "uiComboboxOnSelected");
             bindFunc(cast(void**)&uiNewCombobox, "uiNewCombobox");
+
+            bindFunc(cast(void**)&uiEditableComboboxAppend, "uiEditableComboboxAppend");
             bindFunc(cast(void**)&uiNewEditableCombobox, "uiNewEditableCombobox");
-            
+
             bindFunc(cast(void**)&uiRadioButtonsAppend, "uiRadioButtonsAppend");
+            bindFunc(cast(void**)&uiRadioButtonsSelected, "uiRadioButtonsSelected");
+            bindFunc(cast(void**)&uiRadioButtonsSetSelected, "uiRadioButtonsSetSelected");
+            bindFunc(cast(void**)&uiRadioButtonsOnSelected, "uiRadioButtonsOnSelected");
             bindFunc(cast(void**)&uiNewRadioButtons, "uiNewRadioButtons");
-            
+
             bindFunc(cast(void**)&uiNewDateTimePicker, "uiNewDateTimePicker");
             bindFunc(cast(void**)&uiNewDatePicker, "uiNewDatePicker");
             bindFunc(cast(void**)&uiNewTimePicker, "uiNewTimePicker");
-            
+
             bindFunc(cast(void**)&uiMultilineEntryText, "uiMultilineEntryText");
             bindFunc(cast(void**)&uiMultilineEntrySetText, "uiMultilineEntrySetText");
             bindFunc(cast(void**)&uiMultilineEntryAppend, "uiMultilineEntryAppend");
@@ -178,13 +185,14 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiMultilineEntryReadOnly, "uiMultilineEntryReadOnly");
             bindFunc(cast(void**)&uiMultilineEntrySetReadOnly, "uiMultilineEntrySetReadOnly");
             bindFunc(cast(void**)&uiNewMultilineEntry, "uiNewMultilineEntry");
+            bindFunc(cast(void**)&uiNewNonWrappingMultilineEntry, "uiNewNonWrappingMultilineEntry");
 
             bindFunc(cast(void**)&uiMenuItemEnable, "uiMenuItemEnable");
             bindFunc(cast(void**)&uiMenuItemDisable, "uiMenuItemDisable");
             bindFunc(cast(void**)&uiMenuItemOnClicked, "uiMenuItemOnClicked");
             bindFunc(cast(void**)&uiMenuItemChecked, "uiMenuItemChecked");
             bindFunc(cast(void**)&uiMenuItemSetChecked, "uiMenuItemSetChecked");
-            
+
             bindFunc(cast(void**)&uiMenuAppendItem, "uiMenuAppendItem");
             bindFunc(cast(void**)&uiMenuAppendCheckItem, "uiMenuAppendCheckItem");
             bindFunc(cast(void**)&uiMenuAppendQuitItem, "uiMenuAppendQuitItem");
@@ -197,16 +205,16 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiSaveFile, "uiSaveFile");
             bindFunc(cast(void**)&uiMsgBox, "uiMsgBox");
             bindFunc(cast(void**)&uiMsgBoxError, "uiMsgBoxError");
-            
+
             bindFunc(cast(void**)&uiAreaSetSize, "uiAreaSetSize");
             bindFunc(cast(void**)&uiAreaQueueRedrawAll, "uiAreaQueueRedrawAll");
             bindFunc(cast(void**)&uiAreaScrollTo, "uiAreaScrollTo");
             bindFunc(cast(void**)&uiNewArea, "uiNewArea");
             bindFunc(cast(void**)&uiNewScrollingArea, "uiNewScrollingArea");
-            
+
             bindFunc(cast(void**)&uiDrawNewPath, "uiDrawNewPath");
             bindFunc(cast(void**)&uiDrawFreePath, "uiDrawFreePath");
-            
+
             bindFunc(cast(void**)&uiDrawPathNewFigure, "uiDrawPathNewFigure");
             bindFunc(cast(void**)&uiDrawPathNewFigureWithArc, "uiDrawPathNewFigureWithArc");
             bindFunc(cast(void**)&uiDrawPathLineTo, "uiDrawPathLineTo");
@@ -215,10 +223,10 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiDrawPathCloseFigure, "uiDrawPathCloseFigure");
             bindFunc(cast(void**)&uiDrawPathAddRectangle, "uiDrawPathAddRectangle");
             bindFunc(cast(void**)&uiDrawPathEnd, "uiDrawPathEnd");
-            
+
             bindFunc(cast(void**)&uiDrawStroke, "uiDrawStroke");
             bindFunc(cast(void**)&uiDrawFill, "uiDrawFill");
-            
+
             bindFunc(cast(void**)&uiDrawMatrixSetIdentity, "uiDrawMatrixSetIdentity");
             bindFunc(cast(void**)&uiDrawMatrixTranslate, "uiDrawMatrixTranslate");
             bindFunc(cast(void**)&uiDrawMatrixScale, "uiDrawMatrixScale");
@@ -229,33 +237,33 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiDrawMatrixInvert, "uiDrawMatrixInvert");
             bindFunc(cast(void**)&uiDrawMatrixTransformPoint, "uiDrawMatrixTransformPoint");
             bindFunc(cast(void**)&uiDrawMatrixTransformSize, "uiDrawMatrixTransformSize");
-            
+
             bindFunc(cast(void**)&uiDrawTransform, "uiDrawTransform");
-            
+
             bindFunc(cast(void**)&uiDrawClip, "uiDrawClip");
-            
+
             bindFunc(cast(void**)&uiDrawSave, "uiDrawSave");
             bindFunc(cast(void**)&uiDrawRestore, "uiDrawRestore");
-            
+
             bindFunc(cast(void**)&uiDrawListFontFamilies, "uiDrawListFontFamilies");
             bindFunc(cast(void**)&uiDrawFontFamiliesNumFamilies, "uiDrawFontFamiliesNumFamilies");
             bindFunc(cast(void**)&uiDrawFontFamiliesFamily, "uiDrawFontFamiliesFamily");
             bindFunc(cast(void**)&uiDrawFreeFontFamilies, "uiDrawFreeFontFamilies");
-            
+
             bindFunc(cast(void**)&uiDrawLoadClosestFont, "uiDrawLoadClosestFont");
             bindFunc(cast(void**)&uiDrawFreeTextFont, "uiDrawFreeTextFont");
             bindFunc(cast(void**)&uiDrawTextFontHandle, "uiDrawTextFontHandle");
             bindFunc(cast(void**)&uiDrawTextFontDescribe, "uiDrawTextFontDescribe");
             bindFunc(cast(void**)&uiDrawTextFontGetMetrics, "uiDrawTextFontGetMetrics");
-            
+
             bindFunc(cast(void**)&uiDrawNewTextLayout, "uiDrawNewTextLayout");
             bindFunc(cast(void**)&uiDrawFreeTextLayout, "uiDrawFreeTextLayout");
-            
+
             bindFunc(cast(void**)&uiDrawTextLayoutSetWidth, "uiDrawTextLayoutSetWidth");
             bindFunc(cast(void**)&uiDrawTextLayoutExtents, "uiDrawTextLayoutExtents");
             bindFunc(cast(void**)&uiDrawTextLayoutSetColor, "uiDrawTextLayoutSetColor");
             bindFunc(cast(void**)&uiDrawText, "uiDrawText");
-            
+
             bindFunc(cast(void**)&uiFontButtonFont, "uiFontButtonFont");
             bindFunc(cast(void**)&uiFontButtonOnChanged, "uiFontButtonOnChanged");
             bindFunc(cast(void**)&uiNewFontButton, "uiNewFontButton");
@@ -264,6 +272,8 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiColorButtonSetColor, "uiColorButtonSetColor");
             bindFunc(cast(void**)&uiColorButtonOnChanged, "uiColorButtonOnChanged");
             bindFunc(cast(void**)&uiNewColorButton, "uiNewColorButton");
+
+            bindFunc(cast(void**)&uiUserBugCannotSetParentOnToplevel, "uiUserBugCannotSetParentOnToplevel");
         }
     }
 
