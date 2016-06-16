@@ -45,6 +45,7 @@ extern(C) nothrow
     alias da_uiFreeInitError = void function(cstring err);
 
     alias da_uiMain = void function();
+    alias da_uiMainStep = void function(int wait);
     alias da_uiQuit = void function();
 
     alias da_uiQueueMain = void function(void function(void *data) f, void *data);
