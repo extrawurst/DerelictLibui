@@ -45,6 +45,7 @@ extern(C) nothrow
     alias da_uiFreeInitError = void function(cstring err);
 
     alias da_uiMain = void function();
+    alias da_uiMainStep = void function(int wait);
     alias da_uiQuit = void function();
 
     alias da_uiQueueMain = void function(void function(void *data) f, void *data);
@@ -66,9 +67,10 @@ extern(C) nothrow
     alias da_uiAllocControl = uiControl* function(size_t n, uint32_t OSsig, uint32_t typesig, cstring typenamestr);
     alias da_uiFreeControl = void function(uiControl *);
 
-    alias da_uiControlVerifyDestroy = void function(uiControl *);
     alias da_uiControlVerifySetParent = void function(uiControl *, uiControl *);
     alias da_uiControlEnabledToUser = int function(uiControl *);
+
+    alias da_uiUserBugCannotSetParentOnToplevel = void function(cstring type);
 
     alias onWindowClosingFunction = int function(uiWindow* w, void* data);
 
@@ -92,13 +94,6 @@ extern(C) nothrow
     alias da_uiNewHorizontalBox = uiBox* function();
     alias da_uiNewVerticalBox = uiBox* function();
     
-    alias da_uiEntryText = cstring function(uiEntry *e);
-    alias da_uiEntrySetText = void function(uiEntry *e, cstring text);
-    alias da_uiEntryOnChanged = void function(uiEntry *e, void function(uiEntry *e, void *data) f, void *data);
-    alias da_uiEntryReadOnly = int function(uiEntry *e);
-    alias da_uiEntrySetReadOnly = void function(uiEntry *e, int readonly);
-    alias da_uiNewEntry = uiEntry* function();
-    
     alias da_uiCheckboxText = cstring function(uiCheckbox *c);
     alias da_uiCheckboxSetText = void function(uiCheckbox *c, cstring text);
     alias da_uiCheckboxOnToggled = void function(uiCheckbox *c, void function(uiCheckbox *c, void *data) f, void *data);
@@ -106,6 +101,13 @@ extern(C) nothrow
     alias da_uiCheckboxSetChecked = void function(uiCheckbox *c, int checked);
     alias da_uiNewCheckbox = uiCheckbox* function(cstring text);
     
+    alias da_uiEntryText = cstring function(uiEntry *e);
+    alias da_uiEntrySetText = void function(uiEntry *e, cstring text);
+    alias da_uiEntryOnChanged = void function(uiEntry *e, void function(uiEntry *e, void *data) f, void *data);
+    alias da_uiEntryReadOnly = int function(uiEntry *e);
+    alias da_uiEntrySetReadOnly = void function(uiEntry *e, int readonly);
+    alias da_uiNewEntry = uiEntry* function();
+
     alias da_uiLabelText = cstring function(uiLabel *l);
     alias da_uiLabelSetText = void function(uiLabel *l, cstring text);
     alias da_uiNewLabel = uiLabel* function(cstring text);
@@ -130,13 +132,13 @@ extern(C) nothrow
     alias da_uiSpinboxOnChanged = void function(uiSpinbox *s, void function(uiSpinbox *s, void *data) f, void *data);
     alias da_uiNewSpinbox = uiSpinbox* function(intmax_t min, intmax_t max);
     
-    alias da_uiProgressBarSetValue = void function(uiProgressBar *p, int n);
-    alias da_uiNewProgressBar = uiProgressBar* function();
-    
     alias da_uiSliderValue = intmax_t function(uiSlider *s);
     alias da_uiSliderSetValue = void function(uiSlider *s, intmax_t value);
     alias da_uiSliderOnChanged = void function(uiSlider *s, void function(uiSlider *s, void *data) f, void *data);
     alias da_uiNewSlider = uiSlider* function(intmax_t min, intmax_t max);
+    
+    alias da_uiProgressBarSetValue = void function(uiProgressBar *p, int n);
+    alias da_uiNewProgressBar = uiProgressBar* function();
     
     alias da_uiNewHorizontalSeparator = uiSeparator* function();
     
@@ -145,7 +147,12 @@ extern(C) nothrow
     alias da_uiComboboxSetSelected = void function(uiCombobox *c, intmax_t n);
     alias da_uiComboboxOnSelected = void function(uiCombobox *c, void function(uiCombobox *c, void *data) f, void *data);
     alias da_uiNewCombobox = uiCombobox* function();
-    alias da_uiNewEditableCombobox = uiCombobox* function();
+
+    alias da_uiEditableComboboxAppend = void function(uiEditableCombobox* c, cstring text);
+    alias da_uiEditableComboboxText = cstring function(uiEditableCombobox* c);
+    alias da_uiEditableComboboxSetText = void function(uiEditableCombobox* c, cstring text);
+    alias da_uiEditableComboboxOnChanged = void function(uiEditableCombobox* c, void function(uiEditableCombobox* c, void* data), void* data);
+    alias da_uiNewEditableCombobox = uiEditableCombobox* function();
     
     alias da_uiRadioButtonsAppend = void function(uiRadioButtons *r, cstring text);
     alias da_uiNewRadioButtons = uiRadioButtons* function();
@@ -161,6 +168,7 @@ extern(C) nothrow
     alias da_uiMultilineEntryReadOnly = int function(uiMultilineEntry *e);
     alias da_uiMultilineEntrySetReadOnly = void function(uiMultilineEntry *e, int readonly);
     alias da_uiNewMultilineEntry = uiMultilineEntry* function();
+    alias da_uiNewNonWrappingMultilineEntry = uiMultilineEntry* function();
 
     alias da_uiMenuItemEnable = void function(uiMenuItem *m);
     alias da_uiMenuItemDisable = void function(uiMenuItem *m);
@@ -256,6 +264,7 @@ __gshared
 
     da_uiFreeInitError uiFreeInitError;
     da_uiMain uiMain;
+    da_uiMainStep uiMainStep;
     da_uiQuit uiQuit;
 
     da_uiQueueMain uiQueueMain;
@@ -277,9 +286,10 @@ __gshared
     da_uiAllocControl uiAllocControl;
     da_uiFreeControl uiFreeControl;
 
-    da_uiControlVerifyDestroy uiControlVerifyDestroy;
     da_uiControlVerifySetParent uiControlVerifySetParent;
     da_uiControlEnabledToUser uiControlEnabledToUser;
+
+    da_uiUserBugCannotSetParentOnToplevel uiUserBugCannotSetParentOnToplevel;
 
     da_uiWindowTitle uiWindowTitle;
     da_uiWindowSetTitle uiWindowSetTitle;
@@ -354,6 +364,11 @@ __gshared
     da_uiComboboxSetSelected uiComboboxSetSelected;
     da_uiComboboxOnSelected uiComboboxOnSelected;
     da_uiNewCombobox uiNewCombobox;
+
+    da_uiEditableComboboxAppend uiEditableComboboxAppend;
+    da_uiEditableComboboxText uiEditableComboboxText;
+    da_uiEditableComboboxSetText uiEditableComboboxSetText;
+    da_uiEditableComboboxOnChanged uiEditableComboboxOnChanged;
     da_uiNewEditableCombobox uiNewEditableCombobox;
     
     da_uiRadioButtonsAppend uiRadioButtonsAppend;
@@ -370,6 +385,7 @@ __gshared
     da_uiMultilineEntryReadOnly uiMultilineEntryReadOnly;
     da_uiMultilineEntrySetReadOnly uiMultilineEntrySetReadOnly;
     da_uiNewMultilineEntry uiNewMultilineEntry;
+    da_uiNewNonWrappingMultilineEntry uiNewNonWrappingMultilineEntry;
 
     da_uiMenuItemEnable uiMenuItemEnable;
     da_uiMenuItemDisable uiMenuItemDisable;
