@@ -64,6 +64,7 @@ class DerelictLibuiLoader : SharedLibLoader
 
             bindFunc(cast(void**)&uiFreeInitError, "uiFreeInitError");
             bindFunc(cast(void**)&uiMain, "uiMain");
+            bindFunc(cast(void**)&uiMainStep, "uiMainStep");
             bindFunc(cast(void**)&uiQuit, "uiQuit");
 
             bindFunc(cast(void**)&uiQueueMain, "uiQueueMain");
@@ -87,6 +88,8 @@ class DerelictLibuiLoader : SharedLibLoader
 
             bindFunc(cast(void**)&uiControlVerifySetParent, "uiControlVerifySetParent");
             bindFunc(cast(void**)&uiControlEnabledToUser, "uiControlEnabledToUser");
+
+            bindFunc(cast(void**)&uiUserBugCannotSetParentOnToplevel, "uiUserBugCannotSetParentOnToplevel");
 
             bindFunc(cast(void**)&uiWindowTitle, "uiWindowTitle");
             bindFunc(cast(void**)&uiWindowSetTitle, "uiWindowSetTitle");
@@ -177,6 +180,7 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiMultilineEntryReadOnly, "uiMultilineEntryReadOnly");
             bindFunc(cast(void**)&uiMultilineEntrySetReadOnly, "uiMultilineEntrySetReadOnly");
             bindFunc(cast(void**)&uiNewMultilineEntry, "uiNewMultilineEntry");
+            bindFunc(cast(void**)&uiNewNonWrappingMultilineEntry, "uiNewNonWrappingMultilineEntry");
 
             bindFunc(cast(void**)&uiMenuItemEnable, "uiMenuItemEnable");
             bindFunc(cast(void**)&uiMenuItemDisable, "uiMenuItemDisable");

@@ -45,6 +45,7 @@ extern(C) nothrow
     alias da_uiFreeInitError = void function(cstring err);
 
     alias da_uiMain = void function();
+    alias da_uiMainStep = void function(int wait);
     alias da_uiQuit = void function();
 
     alias da_uiQueueMain = void function(void function(void *data) f, void *data);
@@ -68,6 +69,8 @@ extern(C) nothrow
 
     alias da_uiControlVerifySetParent = void function(uiControl *, uiControl *);
     alias da_uiControlEnabledToUser = int function(uiControl *);
+
+    alias da_uiUserBugCannotSetParentOnToplevel = void function(cstring type);
 
     alias onWindowClosingFunction = int function(uiWindow* w, void* data);
 
@@ -160,6 +163,7 @@ extern(C) nothrow
     alias da_uiMultilineEntryReadOnly = int function(uiMultilineEntry *e);
     alias da_uiMultilineEntrySetReadOnly = void function(uiMultilineEntry *e, int readonly);
     alias da_uiNewMultilineEntry = uiMultilineEntry* function();
+    alias da_uiNewNonWrappingMultilineEntry = uiMultilineEntry* function();
 
     alias da_uiMenuItemEnable = void function(uiMenuItem *m);
     alias da_uiMenuItemDisable = void function(uiMenuItem *m);
@@ -255,6 +259,7 @@ __gshared
 
     da_uiFreeInitError uiFreeInitError;
     da_uiMain uiMain;
+    da_uiMainStep uiMainStep;
     da_uiQuit uiQuit;
 
     da_uiQueueMain uiQueueMain;
@@ -278,6 +283,8 @@ __gshared
 
     da_uiControlVerifySetParent uiControlVerifySetParent;
     da_uiControlEnabledToUser uiControlEnabledToUser;
+
+    da_uiUserBugCannotSetParentOnToplevel uiUserBugCannotSetParentOnToplevel;
 
     da_uiWindowTitle uiWindowTitle;
     da_uiWindowSetTitle uiWindowSetTitle;
@@ -368,6 +375,7 @@ __gshared
     da_uiMultilineEntryReadOnly uiMultilineEntryReadOnly;
     da_uiMultilineEntrySetReadOnly uiMultilineEntrySetReadOnly;
     da_uiNewMultilineEntry uiNewMultilineEntry;
+    da_uiNewNonWrappingMultilineEntry uiNewNonWrappingMultilineEntry;
 
     da_uiMenuItemEnable uiMenuItemEnable;
     da_uiMenuItemDisable uiMenuItemDisable;
