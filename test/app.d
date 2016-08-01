@@ -185,11 +185,11 @@ void main()
     uiComboboxAppend(cbox, "Combobox Item 3");
     uiBoxAppend(inner, cast(uiControl*)(cbox), 0);
 
-    cbox = uiNewEditableCombobox();
-    uiComboboxAppend(cbox, "Editable Item 1");
-    uiComboboxAppend(cbox, "Editable Item 2");
-    uiComboboxAppend(cbox, "Editable Item 3");
-    uiBoxAppend(inner, cast(uiControl*)(cbox), 0);
+    auto ecbox = uiNewEditableCombobox();
+    uiEditableComboboxAppend(ecbox, "Editable Item 1");
+    uiEditableComboboxAppend(ecbox, "Editable Item 2");
+    uiEditableComboboxAppend(ecbox, "Editable Item 3");
+    uiBoxAppend(inner, cast(uiControl*)(ecbox), 0);
 
     auto rb = uiNewRadioButtons();
     uiRadioButtonsAppend(rb, "Radio Button 1");
