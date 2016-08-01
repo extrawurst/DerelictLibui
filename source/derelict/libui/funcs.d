@@ -66,7 +66,6 @@ extern(C) nothrow
     alias da_uiAllocControl = uiControl* function(size_t n, uint32_t OSsig, uint32_t typesig, cstring typenamestr);
     alias da_uiFreeControl = void function(uiControl *);
 
-    alias da_uiControlVerifyDestroy = void function(uiControl *);
     alias da_uiControlVerifySetParent = void function(uiControl *, uiControl *);
     alias da_uiControlEnabledToUser = int function(uiControl *);
 
@@ -277,7 +276,6 @@ __gshared
     da_uiAllocControl uiAllocControl;
     da_uiFreeControl uiFreeControl;
 
-    da_uiControlVerifyDestroy uiControlVerifyDestroy;
     da_uiControlVerifySetParent uiControlVerifySetParent;
     da_uiControlEnabledToUser uiControlEnabledToUser;
 

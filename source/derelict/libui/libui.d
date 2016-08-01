@@ -85,7 +85,6 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiAllocControl, "uiAllocControl");
             bindFunc(cast(void**)&uiFreeControl, "uiFreeControl");
 
-            bindFunc(cast(void**)&uiControlVerifyDestroy, "uiControlVerifyDestroy");
             bindFunc(cast(void**)&uiControlVerifySetParent, "uiControlVerifySetParent");
             bindFunc(cast(void**)&uiControlEnabledToUser, "uiControlEnabledToUser");
 
