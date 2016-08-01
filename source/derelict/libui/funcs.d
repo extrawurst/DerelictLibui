@@ -94,13 +94,6 @@ extern(C) nothrow
     alias da_uiNewHorizontalBox = uiBox* function();
     alias da_uiNewVerticalBox = uiBox* function();
     
-    alias da_uiEntryText = cstring function(uiEntry *e);
-    alias da_uiEntrySetText = void function(uiEntry *e, cstring text);
-    alias da_uiEntryOnChanged = void function(uiEntry *e, void function(uiEntry *e, void *data) f, void *data);
-    alias da_uiEntryReadOnly = int function(uiEntry *e);
-    alias da_uiEntrySetReadOnly = void function(uiEntry *e, int readonly);
-    alias da_uiNewEntry = uiEntry* function();
-    
     alias da_uiCheckboxText = cstring function(uiCheckbox *c);
     alias da_uiCheckboxSetText = void function(uiCheckbox *c, cstring text);
     alias da_uiCheckboxOnToggled = void function(uiCheckbox *c, void function(uiCheckbox *c, void *data) f, void *data);
@@ -108,6 +101,13 @@ extern(C) nothrow
     alias da_uiCheckboxSetChecked = void function(uiCheckbox *c, int checked);
     alias da_uiNewCheckbox = uiCheckbox* function(cstring text);
     
+    alias da_uiEntryText = cstring function(uiEntry *e);
+    alias da_uiEntrySetText = void function(uiEntry *e, cstring text);
+    alias da_uiEntryOnChanged = void function(uiEntry *e, void function(uiEntry *e, void *data) f, void *data);
+    alias da_uiEntryReadOnly = int function(uiEntry *e);
+    alias da_uiEntrySetReadOnly = void function(uiEntry *e, int readonly);
+    alias da_uiNewEntry = uiEntry* function();
+
     alias da_uiLabelText = cstring function(uiLabel *l);
     alias da_uiLabelSetText = void function(uiLabel *l, cstring text);
     alias da_uiNewLabel = uiLabel* function(cstring text);
@@ -132,13 +132,13 @@ extern(C) nothrow
     alias da_uiSpinboxOnChanged = void function(uiSpinbox *s, void function(uiSpinbox *s, void *data) f, void *data);
     alias da_uiNewSpinbox = uiSpinbox* function(intmax_t min, intmax_t max);
     
-    alias da_uiProgressBarSetValue = void function(uiProgressBar *p, int n);
-    alias da_uiNewProgressBar = uiProgressBar* function();
-    
     alias da_uiSliderValue = intmax_t function(uiSlider *s);
     alias da_uiSliderSetValue = void function(uiSlider *s, intmax_t value);
     alias da_uiSliderOnChanged = void function(uiSlider *s, void function(uiSlider *s, void *data) f, void *data);
     alias da_uiNewSlider = uiSlider* function(intmax_t min, intmax_t max);
+    
+    alias da_uiProgressBarSetValue = void function(uiProgressBar *p, int n);
+    alias da_uiNewProgressBar = uiProgressBar* function();
     
     alias da_uiNewHorizontalSeparator = uiSeparator* function();
     

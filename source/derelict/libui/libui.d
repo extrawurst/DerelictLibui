@@ -111,19 +111,19 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiNewHorizontalBox, "uiNewHorizontalBox");
             bindFunc(cast(void**)&uiNewVerticalBox, "uiNewVerticalBox");
             
-            bindFunc(cast(void**)&uiEntryText, "uiEntryText");
-            bindFunc(cast(void**)&uiEntrySetText, "uiEntrySetText");
-            bindFunc(cast(void**)&uiEntryOnChanged, "uiEntryOnChanged");
-            bindFunc(cast(void**)&uiEntryReadOnly, "uiEntryReadOnly");
-            bindFunc(cast(void**)&uiEntrySetReadOnly, "uiEntrySetReadOnly");
-            bindFunc(cast(void**)&uiNewEntry, "uiNewEntry");
-            
             bindFunc(cast(void**)&uiCheckboxText, "uiCheckboxText");
             bindFunc(cast(void**)&uiCheckboxSetText, "uiCheckboxSetText");
             bindFunc(cast(void**)&uiCheckboxOnToggled, "uiCheckboxOnToggled");
             bindFunc(cast(void**)&uiCheckboxChecked, "uiCheckboxChecked");
             bindFunc(cast(void**)&uiCheckboxSetChecked, "uiCheckboxSetChecked");
             bindFunc(cast(void**)&uiNewCheckbox, "uiNewCheckbox");
+            
+            bindFunc(cast(void**)&uiEntryText, "uiEntryText");
+            bindFunc(cast(void**)&uiEntrySetText, "uiEntrySetText");
+            bindFunc(cast(void**)&uiEntryOnChanged, "uiEntryOnChanged");
+            bindFunc(cast(void**)&uiEntryReadOnly, "uiEntryReadOnly");
+            bindFunc(cast(void**)&uiEntrySetReadOnly, "uiEntrySetReadOnly");
+            bindFunc(cast(void**)&uiNewEntry, "uiNewEntry");
             
             bindFunc(cast(void**)&uiLabelText, "uiLabelText");
             bindFunc(cast(void**)&uiLabelSetText, "uiLabelSetText");
@@ -149,13 +149,13 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiSpinboxOnChanged, "uiSpinboxOnChanged");
             bindFunc(cast(void**)&uiNewSpinbox, "uiNewSpinbox");
             
-            bindFunc(cast(void**)&uiProgressBarSetValue, "uiProgressBarSetValue");
-            bindFunc(cast(void**)&uiNewProgressBar, "uiNewProgressBar");
-            
             bindFunc(cast(void**)&uiSliderValue, "uiSliderValue");
             bindFunc(cast(void**)&uiSliderSetValue, "uiSliderSetValue");
             bindFunc(cast(void**)&uiSliderOnChanged, "uiSliderOnChanged");
             bindFunc(cast(void**)&uiNewSlider, "uiNewSlider");
+            
+            bindFunc(cast(void**)&uiProgressBarSetValue, "uiProgressBarSetValue");
+            bindFunc(cast(void**)&uiNewProgressBar, "uiNewProgressBar");
             
             bindFunc(cast(void**)&uiNewHorizontalSeparator, "uiNewHorizontalSeparator");
             

@@ -52,14 +52,14 @@ struct uiMenu {}
 struct uiMenuItem {}
 struct uiButton {}
 struct uiBox {}
-struct uiEntry {}
 struct uiCheckbox {}
+struct uiEntry {}
 struct uiLabel {}
 struct uiTab {}
 struct uiGroup {}
 struct uiSpinbox {}
-struct uiProgressBar {}
 struct uiSlider {}
+struct uiProgressBar {}
 struct uiSeparator {}
 struct uiCombobox {}
 struct uiEditableCombobox {}
