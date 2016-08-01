@@ -164,6 +164,11 @@ class DerelictLibuiLoader : SharedLibLoader
             bindFunc(cast(void**)&uiComboboxSetSelected, "uiComboboxSetSelected");
             bindFunc(cast(void**)&uiComboboxOnSelected, "uiComboboxOnSelected");
             bindFunc(cast(void**)&uiNewCombobox, "uiNewCombobox");
+
+            bindFunc(cast(void**)&uiEditableComboboxAppend, "uiEditableComboboxAppend");
+            bindFunc(cast(void**)&uiEditableComboboxText, "uiEditableComboboxText");
+            bindFunc(cast(void**)&uiEditableComboboxSetText, "uiEditableComboboxSetText");
+            bindFunc(cast(void**)&uiEditableComboboxOnChanged, "uiEditableComboboxOnChanged");
             bindFunc(cast(void**)&uiNewEditableCombobox, "uiNewEditableCombobox");
             
             bindFunc(cast(void**)&uiRadioButtonsAppend, "uiRadioButtonsAppend");

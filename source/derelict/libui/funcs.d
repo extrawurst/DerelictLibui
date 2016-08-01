@@ -147,7 +147,12 @@ extern(C) nothrow
     alias da_uiComboboxSetSelected = void function(uiCombobox *c, intmax_t n);
     alias da_uiComboboxOnSelected = void function(uiCombobox *c, void function(uiCombobox *c, void *data) f, void *data);
     alias da_uiNewCombobox = uiCombobox* function();
-    alias da_uiNewEditableCombobox = uiCombobox* function();
+
+    alias da_uiEditableComboboxAppend = void function(uiEditableCombobox* c, cstring text);
+    alias da_uiEditableComboboxText = cstring function(uiEditableCombobox* c);
+    alias da_uiEditableComboboxSetText = void function(uiEditableCombobox* c, cstring text);
+    alias da_uiEditableComboboxOnChanged = void function(uiEditableCombobox* c, void function(uiEditableCombobox* c, void* data), void* data);
+    alias da_uiNewEditableCombobox = uiEditableCombobox* function();
     
     alias da_uiRadioButtonsAppend = void function(uiRadioButtons *r, cstring text);
     alias da_uiNewRadioButtons = uiRadioButtons* function();
@@ -359,6 +364,11 @@ __gshared
     da_uiComboboxSetSelected uiComboboxSetSelected;
     da_uiComboboxOnSelected uiComboboxOnSelected;
     da_uiNewCombobox uiNewCombobox;
+
+    da_uiEditableComboboxAppend uiEditableComboboxAppend;
+    da_uiEditableComboboxText uiEditableComboboxText;
+    da_uiEditableComboboxSetText uiEditableComboboxSetText;
+    da_uiEditableComboboxOnChanged uiEditableComboboxOnChanged;
     da_uiNewEditableCombobox uiNewEditableCombobox;
     
     da_uiRadioButtonsAppend uiRadioButtonsAppend;
